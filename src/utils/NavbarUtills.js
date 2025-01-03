@@ -5,23 +5,23 @@ export const NavbarUtills = [
     },
     {
         title: 'My Subscription',
-        path: '/'
+        path: '/my_subscription'
     },
     {
         title: 'My Invoices',
-        path: '/'
+        path: '/my_invoices'
     },
     {
         title: 'Credit Line',
-        path: '/'
+        path: '/credit_line'
     },
     {
         title: 'Storage Subscription',
-        path: '/'
+        path: '/storage_subscription'
     },
     {
         title: 'Developer Section',
-        path: '/'
+        path: '/developer_section'
     },
 ]
 

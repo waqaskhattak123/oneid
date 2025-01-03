@@ -1,11 +1,12 @@
 import { ToastContainer } from "react-toastify";
 import Routers from "./routers/Routers";
-import Navbar from "./components/Navbar";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 function App() {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Routers />
       <ToastContainer
         position="top-right"

@@ -4,16 +4,31 @@ import {
   NavbarUtillsProfile,
   NavbarUtillsWallet,
 } from "../utils/NavbarUtills";
+import "./index.css";
+import NavbarServices from "../viewModel/NavbarViewModel/NavbarServices";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [userProfile, setUserProfile] = useState(false);
-  const [addBalance, setUserBalance] = useState(false);
+  const {
+    addBalance,
+    setUserBalance,
+    userProfile,
+    setUserProfile,
+    activeNavigation,
+    setActiveNavigation,
+  } = NavbarServices();
+  // console.log('activeNavigation', activeNavigation);
+  const navigate = useNavigate();
 
+  const handleNavigation = (items, index) => {
+    setActiveNavigation(index);
+    navigate(items.path);
+  };
   return (
     <div>
       <nav className="bg-white text-[14px] border-gray-200 dark:bg-gray-900 border-[1px] border-b-[lightgray]">
         <div className="max-w-screen-full flex flex-wrap items-center lg:justify-between gap-8 mx-auto pt-[20px] pr-[33px] pl-[33px] pb-[1px]">
-          <a className="flex items-center space-x-3 rtl:space-x-reverse">
+          <a className="flex items-center cursor-pointer space-x-3 rtl:space-x-reverse" onClick={() => navigate("/")}>
             <img
               src="https://s3-alpha-sig.figma.com/img/acef/9441/3ddf521f500a11fc99e556959eb77e28?Expires=1736726400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qnmfo8VEdtnuj3GNMiRJd6VFAF6G2upTM4atAIPOyDrPE7ezt6sshnKkVMy6qMRsHRl8c1VOj8Q1QWeZbG6DpqXUBIn6wujiNnNdO097Z1yAvZAL9rsrYWtZxT8nR4vl-j9yvQulcoTUQpRn3WIIz31XwVHCbILDeAE2tA7IZsOv89NXKdpEKTH4GMzCsXr-~fV52GYrJXABLMhy6bXlXzNPSK0g1XYmY~DcTCa4fxd1ZXSmOCmEcfuVCtUFkFe93RJveJzPSIITApLf8B-ZAFX6BiIK4CxKmx2Kl5f4gAueiFwigN8v8Fvhn-RF9Ph3v~4XPMRp0wg8~QQBR9gGKA__"
               className="h-[55px] w-[71px]"
@@ -57,7 +72,10 @@ const Navbar = () => {
                           Your Current Balance is:
                         </span>
                         <p className="font-poppins font-[600] text-[#1AAFD0] block px-4 py-2 text-[30px] hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                          90 <span className="text-[17px] text-[#6f6f6f]">PKR</span>
+                          90{" "}
+                          <span className="text-[17px] text-[#6f6f6f]">
+                            PKR
+                          </span>
                         </p>
                       </li>
                       {NavbarUtillsWallet.map((item, index) => (
@@ -151,10 +169,14 @@ const Navbar = () => {
           >
             <ul className="flex flex-col font-medium  md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               {NavbarUtills.map((item, index) => (
-                <li key={index}>
+                <li key={index} onClick={() => handleNavigation(item, index)}>
                   <a
-                    href={item.path}
-                    className="block py-2 px-3 text-[#6f6f6f] font-[600] font-poppins  rounded md:bg-transparent md:p-0 "
+                    // href={item.path}
+                    className={`${
+                      index === activeNavigation
+                        ? "navbarActive text-[#1AAFD0] ease-out duration-700 font-semibold font-poppins"
+                        : " block cursor-pointer py-2  px-3 text-[#6f6f6f] font-[600] font-poppins  rounded md:bg-transparent md:p-0"
+                    } hover:font-semibold hover:text-[#1AAFD0] dark:text-gray-300 dark:hover:text-[#1AAFD0]`}
                     aria-current="page"
                   >
                     {item.title}
