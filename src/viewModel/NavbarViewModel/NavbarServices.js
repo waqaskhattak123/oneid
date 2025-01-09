@@ -9,8 +9,8 @@ const NavbarServices = () => {
     const [sharebalance, setShareBalance] = useState(false)
     const [viewHistory, setViewHistory] = useState(false)
     const [RechargeBalance, setRechargeBalance] = useState(false)
-    const buttonRef = useRef(null);
-
+    const profileButtonRef = useRef(null);
+    const walletDropDownRef = useRef(null);
     const navigate = useNavigate();
 
     const handleNavigation = (items, index) => {
@@ -27,6 +27,7 @@ const NavbarServices = () => {
         }
     };
     const handleNavbarNavigation = (items, index) => {
+        console.log(items);
         setActiveNavigation(index);
         navigate(items.path);
         setUserProfile(false);
@@ -37,13 +38,21 @@ const NavbarServices = () => {
         navigate(item.path);
         setUserProfile(false);
     }
-     const toggleDropdown = (event) => {
+     const toggleProfileMenu = (event) => {
         event.stopPropagation(); // Prevent triggering the outside click handler
         setUserProfile((prev) => !prev);
+        
+      };
+     const toggleWalletMenu = (event) => {
+        event.stopPropagation(); // Prevent triggering the outside click handler
+        setWalletDropDown((prev) => !prev);
+        
       };
     return {
-        toggleDropdown,
-        buttonRef,navigate,
+        walletDropDownRef,
+        toggleWalletMenu,
+        toggleProfileMenu,
+        profileButtonRef,navigate,
         handleProfileNavigation,
         handleNavigation,
         handleNavbarNavigation,

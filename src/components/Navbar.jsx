@@ -3,6 +3,7 @@ import {
   NavbarUtills,
   NavbarUtillsProfile,
   NavbarUtillsWallet,
+  navbarWholeMenu,
 } from "../utils/NavbarUtills";
 import "./index.css";
 import NavbarServices from "../viewModel/NavbarViewModel/NavbarServices";
@@ -15,6 +16,7 @@ import { NavbarImages } from "../assets/Images";
 
 const Navbar = () => {
   const {
+    walletDropDownRef,
     walletDropDown,
     setWalletDropDown,
     userProfile,
@@ -31,23 +33,41 @@ const Navbar = () => {
     handleNavigation,
     handleNavbarNavigation,
     handleProfileNavigation,
-    buttonRef,
+    profileButtonRef,
     navigate,
-    toggleDropdown,
+    toggleProfileMenu,
+    toggleWalletMenu,
   } = NavbarServices();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target) &&
-        !buttonRef.current.contains(event.target)
-      ) {
-        setUserProfile(false);
+      // Handle user profile dropdown
+      if (dropdownRef.current && profileButtonRef.current) {
+        const isClickOutsideProfile =
+          !dropdownRef.current.contains(event.target) &&
+          !profileButtonRef.current.contains(event.target);
+
+        if (isClickOutsideProfile) {
+          setUserProfile(false);
+        }
+      }
+
+      // Handle wallet dropdown
+      if (dropdownRef.current && walletDropDownRef.current) {
+        const isClickOutsideWallet =
+          !dropdownRef.current.contains(event.target) &&
+          !walletDropDownRef.current.contains(event.target);
+
+        if (isClickOutsideWallet) {
+          setWalletDropDown(false);
+        }
       }
     };
 
+    // Add single event listener
     document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -56,7 +76,7 @@ const Navbar = () => {
   // console.log("recharg ", RechargeBalance);
 
   return (
-    <div className="">
+    <div className="global_text">
       <nav className="bg-white text-[14px] border-gray-200 dark:bg-gray-900 border-[1px] border-b-[lightgray]">
         <div className="max-w-screen-full flex flex-wrap items-center justify-between lg:justify-between gap-8 mx-auto pt-[20px] pr-[33px] pl-[33px] pb-[1px]">
           <a
@@ -77,13 +97,14 @@ const Navbar = () => {
               {/* one wallet logo  */}
               <div className="relative md:flex justify-items-center hidden  items-center space-x-3 rtl:space-x-reverse flex-col">
                 <button
+                  ref={walletDropDownRef}
                   type="button"
                   className="flex text-sm  bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                   id="user-menu-button"
-                  aria-expanded="false"
+                  aria-expanded={walletDropDown}
                   data-dropdown-toggle="user-dropdown"
                   data-dropdown-placement="bottom"
-                  onClick={() => setWalletDropDown(!walletDropDown)}
+                  onClick={toggleWalletMenu}
                 >
                   <img
                     className="w-11 h-11 rounded-full"
@@ -132,12 +153,12 @@ const Navbar = () => {
               {/* user profile */}
               <div className="hidden text-[10px] justify-items-center md:flex relative items-center space-x-3 rtl:space-x-reverse flex-col">
                 <button
-                  ref={buttonRef}
+                  ref={profileButtonRef}
                   type="button"
                   className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                   id="user-menu-button"
                   aria-expanded={userProfile}
-                  onClick={toggleDropdown}
+                  onClick={toggleProfileMenu}
                 >
                   <img
                     className="w-11 h-11 rounded-full"
@@ -173,14 +194,15 @@ const Navbar = () => {
               {/* =============== */}
             </div>
             <div className="md:hidden flex justify-between items-center w-full md:w-auto md:order-1">
-              {/* ======== svg====== */}
+              {/* ======== SVG Button ======== */}
               <button
+                ref={profileButtonRef}
                 data-collapse-toggle="navbar-user"
                 type="button"
-                className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="relative inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="navbar-user"
-                aria-expanded="false"
-                onClick={() => setUserProfile(!userProfile)}
+                aria-expanded={userProfile}
+                onClick={toggleProfileMenu}
               >
                 <svg
                   className="w-5 h-5"
@@ -198,24 +220,30 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              {/* Dropdown menu */}
-              {userProfile && (
-                <div
-                  className="z-50 absolute top-12 my-4  text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                  id="user-dropdown"
-                >
-                  <ul className="py-2" aria-labelledby="user-menu-button">
-                    {NavbarUtillsProfile.map((item, index) => (
-                      <li key={index} className="cursor-pointer">
-                        <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600">
-                          {item.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {/* =============== */}
+              {/* ======== Dropdown Menu ======== */}
+              <div
+                className={`z-50 absolute top-20 w-full right-0 text-base list-none bg-white divide-y divide-gray-100 px-2 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 overflow-hidden transition-[height] duration-300 ease-in-out ${
+                  userProfile ? "h-auto max-h-[300px]" : "h-0"
+                }`}
+                id="user-dropdown"
+                style={{
+                  transition: "max-height 0.3s ease-in-out",
+                }}
+              >
+                <ul className="py-2" aria-labelledby="user-menu-button">
+                  {navbarWholeMenu.map((item, index) => (
+                    <li
+                      key={index}
+                      className="cursor-pointer "
+                      
+                    >
+                      <a className="block  px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600" onClick={() => handleNavbarNavigation(item, index)}>
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
           {/* dashboard, my sbsription.... */}
