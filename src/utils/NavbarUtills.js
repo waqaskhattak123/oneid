@@ -28,11 +28,11 @@ export const NavbarUtills = [
 export const NavbarUtillsProfile = [
     {
         title: 'Settings',
-        path: '/'
+        path: '/profile_setting'
     },
     {
         title: 'Logout',
-        path: '/'
+        path: '/login'
     },
 ]
 
@@ -43,7 +43,7 @@ export const NavbarUtillsWallet = [
     },
     {
         title: 'View Transactions',
-        path: '/'
+        path: '/view_transation'
     },
     {
         title: 'Share Balance',

@@ -33,11 +33,11 @@ export const organizationData = [
     { icon: 'https://oneid.veevotech.com/org_dp/files/10467752-default.jpeg', name: 'XYZ Badar', type: 'IT/Software Services' },
     { icon: 'https://oneid.veevotech.com/org_dp/files/10467752-default.jpeg', name: 'XYZ Badar', type: 'IT/Software Services' },
     { icon: 'https://oneid.veevotech.com/org_dp/files/10467752-default.jpeg', name: 'XYZ Badar', type: 'IT/Software Services' },
-  
+
 ]
 export const forMeApps = [
     { icon: 'https://oneid.veevotech.com/frontend_assets/images/icons/smn.png?v=123', name: 'Hire 2.0', type: 'IT/Software Services', role: 'Admin', location: 'Abotabad, Pakistan', Address: 'University Road Abbottabad', contact: '0345000003030', email: 'badarkhan3739@gmail.com' },
-   
+
 
 ]
 
@@ -65,3 +65,8 @@ export const colourOptions = [
     { value: 'slate', label: 'Slate', color: '#253858' },
     { value: 'silver', label: 'Silver', color: '#666666' },
 ];
+export const storageSubscription = [
+    { title: 'STORAGE-BASIC-2GB', ammount: '1,000', currency: 'PKR', duration: 'Year', subscribe: 'Subscribe' },
+    { title: 'STORAGE-BASIC-2GB', ammount: '2,000', currency: 'USD', duration: 'Year', subscribe: 'Subscribe' },
+    { title: 'STORAGE-BASIC-2GB', ammount: '3,000', currency: 'EUR', duration: 'Year', subscribe: 'Subscribe' }
+]
