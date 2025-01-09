@@ -3,9 +3,11 @@ import { useState } from 'react'
 const DashboardServices = () => {
     const [activeNavigation, setActiveNavigation] = useState(0);
     const [manageSubscriptions, setManageSubscriptions] = useState(false);
+    const [subscribeApp ,setSubscribeApp] = useState(false)
     return {
         activeNavigation, setActiveNavigation,
-        manageSubscriptions, setManageSubscriptions
+        manageSubscriptions, setManageSubscriptions,
+        subscribeApp, setSubscribeApp
     }
 }
 

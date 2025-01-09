@@ -13,6 +13,7 @@ import { CustomCenteredModal } from "../../components/CenteredModal";
 import CreateOrganization from "../CreateOrganization/CreateOrganization";
 import DashboardServices from "../../viewModel/DashboardViewModel/DashboardServices";
 import ManageApp from "./ManageApp";
+import SubscribeApp from "../SubscribeApp/SubscribeApp";
 
 const Home = () => {
   const {
@@ -20,6 +21,8 @@ const Home = () => {
     setActiveNavigation,
     manageSubscriptions,
     setManageSubscriptions,
+    subscribeApp,
+    setSubscribeApp,
   } = DashboardServices();
   const { openCreateOrg, setOpenCreateOrg } = CreateOrgServices();
 
@@ -32,7 +35,7 @@ const Home = () => {
             key={index}
             className={`${
               index === activeNavigation ? "navigationActive" : ""
-            } pt-1 ml-2 rounded-md font-poppins w-[150px]  duration-1000 hover:ease-in-out hover:text-white hover:bg-[#1aafd0] cursor-pointer border-[1px] border-[lightgray] text-center` }
+            } pt-1 ml-2 rounded-md font-poppins w-[150px]  duration-1000 hover:ease-in-out hover:text-white hover:bg-[#1aafd0] cursor-pointer border-[1px] border-[lightgray] text-center`}
             onClick={() => setActiveNavigation(index)}
           >
             <span className="text-[14px] font-poppins cursor-pointer ">
@@ -167,7 +170,10 @@ const Home = () => {
                     </span>
 
                     {/* Button */}
-                    <button className="text-[12px] font-poppins text-[#6f6f6f] bg-[#ffffff] pt-[2px] pr-[12px] pb-[0px] pl-[17px] rounded-md mt-2 w-max focus:outline-none hover:bg-[#999999] hover:text-[white] border-[1px] border-[#e5e5e5] self-end">
+                    <button
+                      className="text-[12px] font-poppins text-[#6f6f6f] bg-[#ffffff] pt-[2px] pr-[12px] pb-[0px] pl-[17px] rounded-md mt-2 w-max focus:outline-none hover:bg-[#999999] hover:text-[white] border-[1px] border-[#e5e5e5] self-end"
+                      onClick={() => setSubscribeApp(true)}
+                    >
                       Subscribe
                     </button>
                   </div>
@@ -301,6 +307,14 @@ const Home = () => {
         bodyContent={
           <ManageApp setManageSubscriptions={setManageSubscriptions} />
         }
+      />
+
+      <CustomCenteredModal
+        open={subscribeApp}
+        size="md"
+        onClose={() => setSubscribeApp(false)}
+        title="Select Workspace"
+        bodyContent={<SubscribeApp />}
       />
     </div>
   );
