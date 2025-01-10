@@ -194,7 +194,6 @@ const Navbar = () => {
               {/* =============== */}
             </div>
             <div className="md:hidden flex justify-between items-center w-full md:w-auto md:order-1">
-              {/* ======== SVG Button ======== */}
               <button
                 ref={profileButtonRef}
                 data-collapse-toggle="navbar-user"
@@ -220,24 +219,37 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              {/* ======== Dropdown Menu ======== */}
+
               <div
-                className={`z-50 absolute top-20 w-full right-0 text-base list-none bg-white divide-y divide-gray-100 px-2 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 overflow-hidden transition-[height] duration-300 ease-in-out ${
-                  userProfile ? "h-auto max-h-[300px]" : "h-0"
-                }`}
+                className={`
+          z-50 absolute top-20 w-full right-0 
+          text-base list-none bg-white divide-y divide-gray-100 
+          px-2 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 
+          transform transition-all duration-300 ease-in-out
+          origin-top
+          ${
+            userProfile
+              ? "opacity-100 scale-y-100 max-h-[300px]"
+              : "opacity-0 scale-y-0 max-h-0"
+          }
+        `}
                 id="user-dropdown"
-                style={{
-                  transition: "max-height 0.3s ease-in-out",
-                }}
               >
-                <ul className="py-2" aria-labelledby="user-menu-button">
+                <ul
+                  className={`py-2 transition-all duration-300 ease-in-out ${
+                    userProfile ? "opacity-100" : "opacity-0"
+                  }`}
+                  aria-labelledby="user-menu-button"
+                >
                   {navbarWholeMenu.map((item, index) => (
                     <li
                       key={index}
-                      className="cursor-pointer "
-                      
+                      className="cursor-pointer transform transition-transform duration-200 hover:scale-[1.02]"
                     >
-                      <a className="block  px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600" onClick={() => handleNavbarNavigation(item, index)}>
+                      <a
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 rounded-md transition-colors duration-200"
+                        onClick={() => handleNavbarNavigation(item, index)}
+                      >
                         {item.title}
                       </a>
                     </li>

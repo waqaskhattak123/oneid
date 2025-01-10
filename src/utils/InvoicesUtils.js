@@ -109,3 +109,7 @@ export const quickStatementData = [
         balance: '10.00',
     },
 ]
+
+export const profileData = [
+    { name: "Badar Khan", memberSince: 'June, 2023',billingID : '1223455',  country: 'Pakistan', email: 'badarkhan3739@gmail.com', phoneOne: '+923419287461', phoneTwo: '+923419287461' }
+]

@@ -27,7 +27,7 @@ const NavbarServices = () => {
         }
     };
     const handleNavbarNavigation = (items, index) => {
-        console.log(items);
+        // console.log(items);
         setActiveNavigation(index);
         navigate(items.path);
         setUserProfile(false);
