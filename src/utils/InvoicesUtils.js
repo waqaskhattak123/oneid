@@ -111,5 +111,9 @@ export const quickStatementData = [
 ]
 
 export const profileData = [
-    { name: "Badar Khan", memberSince: 'June, 2023',billingID : '1223455',  country: 'Pakistan', email: 'badarkhan3739@gmail.com', phoneOne: '+923419287461', phoneTwo: '+923419287461' }
+    { name: "Badar Khan", memberSince: 'June, 2023', billingID: '1223455', country: 'Pakistan', email: 'badarkhan3739@gmail.com', phoneOne: '+923419287461', phoneTwo: '+923419287461' }
+]
+export const loginHomeUtils = [
+    { title: 'Login', path: '/login' },
+    { title: 'Register', path: '/register' },
 ]

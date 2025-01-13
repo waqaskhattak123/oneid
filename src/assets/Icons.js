@@ -13,6 +13,10 @@ import { MdDelete } from "react-icons/md";
 import { FaGreaterThan } from "react-icons/fa6"
 import { FaLessThan } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { FaPhoneAlt } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa"
 
 export const DashboardIcons = {
     plus: GoPlus,
@@ -29,6 +33,10 @@ export const DashboardIcons = {
     delete: MdDelete,
     greaterThan: FaGreaterThan,
     lessThan: FaLessThan,
-    chevronDown: FaChevronDown
+    chevronDown: FaChevronDown,
+    email: MdEmail,
+    phone: FaPhoneAlt,
+    google: FaGoogle,
+    facebook: FaFacebookF
 
 }
