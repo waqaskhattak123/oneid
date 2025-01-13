@@ -9,7 +9,7 @@ import StorageSubscription from "../view/StorageSubscription/StorageSubscription
 import DeveloperSection from "../view/DevelopersSection/DeveloperSection";
 import ViewTransation from "../view/ViewTransation/ViewTransation";
 import Settings from "../view/Profile/Settings";
-import Login from "../view/logIn/Login";
+import LoginHome from "../view/logIn/LoginHome";
 
 // Define Routes
 const Routers = () => {
@@ -17,7 +17,7 @@ const Routers = () => {
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
         <Router>
-          <Navbar />
+          {/* <Navbar /> */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/my_subscription" element={<MySubscription />} />
@@ -26,7 +26,7 @@ const Routers = () => {
             <Route path="/developer_section" element={<DeveloperSection />} />
             <Route path="/view_transation" element={<ViewTransation />} />
             <Route path="/profile_setting" element={<Settings />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<LoginHome />} />
             <Route
               path="/storage_subscription"
               element={<StorageSubscription />}
@@ -34,7 +34,9 @@ const Routers = () => {
           </Routes>
         </Router>
       </main>
-      <Footer />
+      {/* <footer className=" text-white p-4 text-center">
+        <Footer />
+      </footer> */}
     </div>
   );
 };
